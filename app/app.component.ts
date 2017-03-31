@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   <div class="container">
     <h1>Meal Tracker</h1>
     <ul>
-      <li (click)="isEaten(currentMeal)" *ngFor="let currentMeal of meals">
+      <li [class]="calorieColor(currentMeal)" (click)="isEaten(currentMeal)" *ngFor="let currentMeal of meals">
       Name: {{currentMeal.name}}; Details: {{currentMeal.detail}}; Calories: {{currentMeal.calorie}}   <button (click)="editMeal()">Edit!</button></li>
     </ul>
   </div>
@@ -29,6 +29,14 @@ export class AppComponent {
       alert("You already ate it?!!");
     } else {
       alert("Eat it now!");
+    }
+  }
+
+  calorieColor(currentMeal) {
+    if (currentMeal.calorie >= 500) {
+      return "bg-danger";
+    } else {
+      return "bg-success";
     }
   }
 }
