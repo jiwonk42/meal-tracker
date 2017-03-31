@@ -4,8 +4,13 @@ import { Meal } from './meal';
 @Component({
   selector: 'meal-list',
   template: `
+  <select (change)="onChange($event.target.value)">
+    <option value="allCalories" selected="selected">All Meals</option>
+     <option value="highCalorie">High Calories</option>
+     <option value="lowCalorie">Low Calories</option>
+  </select>
   <ul>
-    <li (click)="isEaten(currentMeal)" *ngFor="let currentMeal of childMealList">
+    <li *ngFor="let currentMeal of childMealList | category:filterByCalorie">
     Name: {{currentMeal.name}}; Details: {{currentMeal.detail}}; Calories: {{currentMeal.calorie}}   <button (click)="editButton(currentMeal)">Edit!</button></li>
   </ul>
   `
@@ -14,14 +19,6 @@ import { Meal } from './meal';
 export class MealListComponent {
   @Input() childMealList: Meal[];
   @Output() clickSender = new EventEmitter();
-
-  isEaten(clickedMeal: Meal) {
-    if (clickedMeal.eaten === true) {
-      alert("You already ate it?!!");
-    } else {
-      alert("Eat it now!");
-    }
-  }
 
   editButton(mealToEdit: Meal) {
     this.clickSender.emit(mealToEdit);
@@ -33,4 +30,9 @@ export class MealListComponent {
   //     return "bg-success";
   //   }
   // }
+  filterByCalorie: string = "allCalories";
+
+  onChange(optionFromMenu) {
+    this.filterByCalorie = optionFromMenu;
+  }
 }
