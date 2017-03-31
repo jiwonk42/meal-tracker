@@ -23,13 +23,7 @@ export class MealListComponent {
   editButton(mealToEdit: Meal) {
     this.clickSender.emit(mealToEdit);
   }
-  // calorieColor(currentMeal) {
-  //   if (currentMeal.calorie >= 500) {
-  //     return "bg-danger";
-  //   } else {
-  //     return "bg-success";
-  //   }
-  // }
+
   filterByCalorie: string = "allCalories";
 
   onChange(optionFromMenu) {
