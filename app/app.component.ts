@@ -8,7 +8,7 @@ import { Meal } from './meal';
     <h1>Meal Tracker</h1>
     <meal-list [childMealList]="masterMealList" (clickSender)="editMeal($event)"></meal-list>
     <hr>
-    <edit-meal [childSelectedMeal]="selectedMeal"></edit-meal>
+    <edit-meal [childSelectedMeal]="selectedMeal" (doneButtonClickedSender)="finishedEditing()"></edit-meal>
   </div>
   `
 })
