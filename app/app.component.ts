@@ -6,9 +6,11 @@ import { Meal } from './meal';
   template: `
   <div class="container">
     <h1>Meal Tracker</h1>
+    <br>
     <meal-list [childMealList]="masterMealList" (clickSender)="editMeal($event)"></meal-list>
     <hr>
     <edit-meal [childSelectedMeal]="selectedMeal" (doneButtonClickedSender)="finishedEditing()"></edit-meal>
+    <br>
     <new-meal (newMealSender)="addMeal($event)"></new-meal>
   </div>
   `
